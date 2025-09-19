@@ -28,7 +28,7 @@ public class Main {
 			}
 		};
 
-		Collections.sort(alumnos, compararNia);
+		alumnos.sort(compararNia);
 
 		System.out.println("Alumnos ordenados por NIA: \n");
 		for (Alumno a : alumnos) {
@@ -39,3 +39,4 @@ public class Main {
 	}
 
 }
+
