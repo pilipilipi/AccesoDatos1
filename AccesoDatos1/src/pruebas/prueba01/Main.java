@@ -1,9 +1,9 @@
 package pruebas.prueba01;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+//import java.util.Collections;
+//import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -18,21 +18,21 @@ public class Main {
 						new Alumno(3333333, "Carla", "Lopez", "ASIR", "Primero", "B1", 'f', "28/11/2005")));
 
 		for (Alumno a : alumnos) {
-			System.out.println(a + "\n");
+			System.out.println(a);
 		}
 
-		Comparator<Alumno> compararNia = new Comparator<Alumno>() {
-			@Override
-			public int compare(Alumno a1, Alumno a2) {
-				return a1.getNia() - a2.getNia();
-			}
-		};
+//		Comparator<Alumno> compararNia = new Comparator<Alumno>() {
+//			@Override
+//			public int compare(Alumno a1, Alumno a2) {
+//				return a1.getNia() - a2.getNia();
+//			}
+//		};
 
-		alumnos.sort(compararNia);
+		alumnos.sort((a1, a2) -> a1.getNia() - a2.getNia());
 
-		System.out.println("Alumnos ordenados por NIA: \n");
+		System.out.println("\n\nAlumnos ordenados por NIA: \n");
 		for (Alumno a : alumnos) {
-			System.out.println(a + "\n");
+			System.out.println(a);
 		}
 		
 		

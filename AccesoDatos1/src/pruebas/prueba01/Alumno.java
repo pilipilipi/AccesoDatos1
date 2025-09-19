@@ -21,6 +21,7 @@ public class Alumno {
 		this.ciclo = ciclo;
 		this.curso = curso;
 		this.grupo = grupo;
+		this.genero = genero;
 
 		try {
 			this.fecha = LocalDate.parse(fecha, FORMATO);
