@@ -104,7 +104,4 @@ public class Alumno {
 	public static DateTimeFormatter getFormato() {
 		return FORMATO;
 	}
-
-	
-	
 }
