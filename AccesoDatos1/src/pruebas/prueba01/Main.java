@@ -34,9 +34,6 @@ public class Main {
 		for (Alumno a : alumnos) {
 			System.out.println(a);
 		}
-		
-		
 	}
 
 }
-
