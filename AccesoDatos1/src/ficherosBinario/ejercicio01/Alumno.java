@@ -1,4 +1,4 @@
-package pruebas.prueba01;
+package ficherosBinario.ejercicio01;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -105,4 +105,5 @@ public class Alumno {
 	public static DateTimeFormatter getFormato() {
 		return FORMATO;
 	}
+
 }
