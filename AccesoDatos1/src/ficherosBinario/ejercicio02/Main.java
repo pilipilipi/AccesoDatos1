@@ -1,15 +1,7 @@
 package ficherosBinario.ejercicio02;
 
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.Scanner;
-
-import pruebas.prueba01.Alumno;
 
 public class Main {
 
@@ -27,13 +19,20 @@ public class Main {
 		File f = new File(ruta + "\\" + fichero + ".dat");
 
 		try (ObjectOutputStream salidaDatos = new ObjectOutputStream(new FileOutputStream(f))) {
-
+			int seguir;
+			
 			do {
 				Alumno a = leerAlumno(sc);
 				salidaDatos.writeObject(a);
 
 				System.out.println("Para introducir otro alumno introduzca 1, para salir, introduzca 0");
-			} while (Integer.parseInt(sc.nextLine()) != 0);
+				seguir = Integer.parseInt(sc.nextLine());
+				
+				while(seguir != 1 || seguir != 0) {
+					System.out.println("Numero no válido, 1 seguir, 0 finalizar");
+				}
+				
+			} while (seguir != 0);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -48,7 +47,6 @@ public class Main {
 					System.out.println(a);
 
 				} catch (EOFException e) {
-					// Fin del archivo alcanzado
 					break;
 				}
 			}

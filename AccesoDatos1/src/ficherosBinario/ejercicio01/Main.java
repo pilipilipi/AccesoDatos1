@@ -6,7 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
-import pruebas.prueba01.Alumno;
+/**
+ * @author Pilar
+ * @version 1.0
+ */
 
 public class Main {
 
@@ -54,6 +57,11 @@ public class Main {
 
 		sc.close();
 	}
+
+	/**
+	 * @param sc el objeto
+	 * @return un nuevo objeto Alumno con los datos introducidos
+	 */
 
 	public static Alumno leerAlumno(Scanner sc) {
 

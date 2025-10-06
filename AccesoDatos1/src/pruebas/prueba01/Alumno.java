@@ -105,8 +105,4 @@ public class Alumno {
 	public static DateTimeFormatter getFormato() {
 		return FORMATO;
 	}
-	
-	public String getFechaString() {
-		return this.fecha.format(FORMATO);
-	}
 }

@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * @author Pilar
+ * @version 1.0
+ */
+
 public class Alumno {
 
 	private int nia;
@@ -104,6 +109,12 @@ public class Alumno {
 
 	public static DateTimeFormatter getFormato() {
 		return FORMATO;
+	}
+	
+
+	
+	public String getFechaString() {
+		return this.fecha.format(FORMATO);
 	}
 
 }
