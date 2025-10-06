@@ -1,11 +1,14 @@
-package pruebas.prueba01;
+package ficherosBinario.ejercicio02;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Alumno {
-
+public class Alumno implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private int nia;
 	private String nombre, apellidos, ciclo, curso, grupo;
 	private char genero;
@@ -105,7 +108,7 @@ public class Alumno {
 	public static DateTimeFormatter getFormato() {
 		return FORMATO;
 	}
-	
+
 	public String getFechaString() {
 		return this.fecha.format(FORMATO);
 	}

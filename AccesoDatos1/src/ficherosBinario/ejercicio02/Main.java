@@ -1,9 +1,12 @@
-package ficherosBinario.ejercicio01;
+package ficherosBinario.ejercicio02;
 
-import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 import pruebas.prueba01.Alumno;
@@ -23,32 +26,35 @@ public class Main {
 
 		File f = new File(ruta + "\\" + fichero + ".dat");
 
-		FileOutputStream salida = new FileOutputStream(f);
-		DataOutputStream salidaDatos = null;
-
-		try {
-			salidaDatos = new DataOutputStream(salida);
+		try (ObjectOutputStream salidaDatos = new ObjectOutputStream(new FileOutputStream(f))) {
 
 			do {
 				Alumno a = leerAlumno(sc);
-
-				salidaDatos.writeInt(a.getNia());
-				salidaDatos.writeUTF(a.getNombre());
-				salidaDatos.writeUTF(a.getApellidos());
-				salidaDatos.writeChar(a.getGenero());
-				salidaDatos.writeUTF(a.getFechaString());
-				salidaDatos.writeUTF(a.getCiclo());
-				salidaDatos.writeUTF(a.getCurso());
-				salidaDatos.writeUTF(a.getGrupo());
-				salidaDatos.flush();
+				salidaDatos.writeObject(a);
 
 				System.out.println("Para introducir otro alumno introduzca 1, para salir, introduzca 0");
 			} while (Integer.parseInt(sc.nextLine()) != 0);
 
-			salidaDatos.close();
-
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try (ObjectInputStream entradaDatos = new ObjectInputStream(new FileInputStream(f))) {
+
+			while (true) {
+				try {
+					Alumno a = (Alumno) entradaDatos.readObject();
+					System.out.println(a);
+
+				} catch (EOFException e) {
+					// Fin del archivo alcanzado
+					break;
+				}
+			}
+			entradaDatos.close();
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -83,4 +89,5 @@ public class Main {
 
 		return new Alumno(nia, nombre, apellidos, ciclo, curso, grupo, genero, fecha);
 	}
+
 }
