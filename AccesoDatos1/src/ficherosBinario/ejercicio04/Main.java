@@ -1,4 +1,4 @@
-package ficherosBinario.ejercicio01;
+package ficherosBinario.ejercicio04;
 
 import java.io.DataOutputStream;
 import java.io.File;

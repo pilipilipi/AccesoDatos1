@@ -1,4 +1,4 @@
-package ficherosBinario.ejercicio02;
+package ficherosBinario.ejercicio05;
 
 import java.io.*;
 import java.util.Scanner;
@@ -8,6 +8,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		Scanner sc = new Scanner(System.in);
 
+		int acc = 0;
 		String fichero, ruta;
 
 		System.out.println("Dime el nombre del fichero");
@@ -24,12 +25,15 @@ public class Main {
 			do {
 				Alumno a = leerAlumno(sc);
 				salidaDatos.writeObject(a);
-
-				System.out.println("Para introducir otro alumno introduzca 1, para salir, introduzca 0");
-				seguir = Integer.parseInt(sc.nextLine());
 				
-				while(seguir != 1 || seguir != 0) {
+				acc++;
+				
+				System.out.println("Para introducir otro alumno introduzca 1, para salir, introduzca 0");
+				seguir = leerOpcion(sc);
+				
+				while(seguir != 1 && seguir != 0) {
 					System.out.println("Numero no válido, 1 seguir, 0 finalizar");
+					seguir = leerOpcion(sc);
 				}
 				
 			} while (seguir != 0);
@@ -40,23 +44,34 @@ public class Main {
 		}
 
 		try (ObjectInputStream entradaDatos = new ObjectInputStream(new FileInputStream(f))) {
-
-			while (true) {
-				try {
-					Alumno a = (Alumno) entradaDatos.readObject();
-					System.out.println(a);
-
-				} catch (EOFException e) {
-					break;
-				}
+			
+			for (int i = 0; i < acc; i++) {
+			    Alumno a = (Alumno) entradaDatos.readObject();
+			    System.out.println(a);
 			}
-			entradaDatos.close();
+			//entradaDatos.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		sc.close();
+	}
+	
+	public static int leerOpcion(Scanner sc) {
+	    int opcion;
+	    do {
+	        System.out.print("1 para continuar, 0 para salir: ");
+	        
+	        try {
+	            opcion = Integer.parseInt(sc.nextLine());
+	            
+	        } catch (NumberFormatException e) {
+	            opcion = -1;
+	        }
+	    } while (opcion != 0 && opcion != 1);
+	    
+	    return opcion;
 	}
 
 	public static Alumno leerAlumno(Scanner sc) {

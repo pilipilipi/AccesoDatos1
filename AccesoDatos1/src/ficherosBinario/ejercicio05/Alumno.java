@@ -1,11 +1,11 @@
-package ficherosBinario.ejercicio02;
+package ficherosBinario.ejercicio05;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Alumno implements Serializable{
+public class Alumno implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
