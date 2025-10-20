@@ -16,7 +16,7 @@ public class Alumno implements Serializable {
 	private static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	private LocalDate fecha;
 
-	Alumno(int nia, String nombre, String apellidos, String ciclo, String curso, String grupo, char genero,
+	public Alumno(int nia, String nombre, String apellidos, String ciclo, String curso, String grupo, char genero,
 			String fecha) {
 
 		this.nia = nia;
