@@ -30,7 +30,6 @@ public class Ejercicio02 {
 			while ((linea = br.readLine()) != null && (linea2 = br2.readLine()) != null) {
 
 				pw.println(linea);
-
 				pw.println(linea2);
 			}
 

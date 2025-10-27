@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Ejercicio2 {
+	final static String EXIT = "exit";
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -15,12 +16,8 @@ public class Ejercicio2 {
 			System.out.println("Escribe lineas, exit para acabar");
 			String linea = "";
 
-			while (!linea.equalsIgnoreCase("exit")) {
-				linea = sc.nextLine();
-
-				if (!linea.equalsIgnoreCase("exit")) {
-					pw.println(linea);
-				}
+			while (!sc.nextLine().equalsIgnoreCase(EXIT)) {
+				pw.println(linea);
 			}
 
 		} catch (IOException e) {
