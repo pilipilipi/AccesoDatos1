@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Alumnos>
+    <alumno>
+        <nia>6</nia>
+        <nombre>h</nombre>
+        <ciclo>h</ciclo>
+        <apellidos>h</apellidos>
+        <curso>h</curso>
+        <grupo>h</grupo>
+        <genero>h</genero>
+        <fecha>01/07/2007</fecha>
+    </alumno>
+</Alumnos>
