@@ -33,18 +33,16 @@ public class Ejercicio02 {
 
 			}
 
-			//if (linea == null) {
-				while ((linea2 = br2.readLine()) != null) {
-					pw.println(linea2);
-				}
-			//}
+			while ((linea2 = br2.readLine()) != null) {
+				pw.println(linea2);
+			}
 
-			//if (linea2 == null) {
+			if (linea2 == null) {
 				pw.println(linea);
 				while ((linea = br.readLine()) != null) {
 					pw.println(linea);
 				}
-			//}
+			}
 
 		} catch (IOException e) {
 			System.out.println("Error al leer el archivo: " + e.getMessage());
