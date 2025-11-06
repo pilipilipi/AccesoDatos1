@@ -24,6 +24,7 @@ public abstract class AlumnosAbstracta {
 
 			Document document = implementation.createDocument(null, "Alumnos", null);
 			document.setXmlVersion("1.0");
+			
 
 			for (Alumno alumno : alumnos) {
 				Element alumnoE = crearElementoAlumno(document, alumno);
