@@ -26,7 +26,15 @@ public abstract class AlumnosAbstracta {
 			document.setXmlVersion("1.0");
 
 			for (Alumno alumno : alumnos) {
-				Element alumnoE = crearElementoAlumno(document, alumno);
+				Element alumnoE = document.createElement("alumno");
+				anyadirNia(document, alumno, alumnoE);
+				anyadirNombre(document, alumno, alumnoE);
+				anyadirApellidos(document, alumno, alumnoE);
+				anyadirCiclo(document, alumno, alumnoE);
+				anyadirCurso(document, alumno, alumnoE);
+				anyadirGrupo(document, alumno, alumnoE);
+				anyadirGenero(document, alumno, alumnoE);
+				anyadirFecha(document, alumno, alumnoE);
 				document.getDocumentElement().appendChild(alumnoE);
 			}
 
@@ -41,13 +49,37 @@ public abstract class AlumnosAbstracta {
 		}
 	}
 
-	protected abstract Element crearElementoAlumno(Document document, Alumno alumno);
+	//protected abstract Element crearElementoAlumno(String etiqueta, String cont, Document document, Alumno alumno);
+	
+	protected abstract void anyadirNia(Document document, Alumno alumno, Element alumnoE);
+	protected abstract void anyadirNombre(Document document, Alumno alumno, Element alumnoE);
+	protected abstract void anyadirApellidos(Document document, Alumno alumno, Element alumnoE);
+	protected abstract void anyadirCiclo(Document document, Alumno alumno, Element alumnoE);
+	protected abstract void anyadirCurso(Document document, Alumno alumno, Element alumnoE);
+	protected abstract void anyadirGrupo(Document document, Alumno alumno, Element alumnoE);
+	protected abstract void anyadirGenero(Document document, Alumno alumno, Element alumnoE);
+	protected abstract void anyadirFecha(Document document, Alumno alumno, Element alumnoE);
 
-	protected static void crearElemento(String dato, String valor, Element padre, Document document) {
-		Element elem = document.createElement(dato);
-		Text text = document.createTextNode(valor);
-		elem.appendChild(text);
-		padre.appendChild(elem);
+	protected static void crearElemento(String etiqueta, String cont, Element alumnoE, Document document) {
+		Element elem = document.createElement(etiqueta);
+		//Text text = document.createTextNode(cont);
+		elem.appendChild(document.createTextNode(cont));
+		alumnoE.appendChild(elem);
+	}
+	
+	protected void crearElementoAlumno(String etiqueta, String cont, Element alumnoE, Document document) {
+		// Creamos el nodo alumno
+		//Element alumnoE = document.createElement("alumno");
+		crearElemento(etiqueta, cont, alumnoE, document);
+		
+		//return alumnoE;
+	}
+	
+	protected void crearElementoAlumnoatt(String etiqueta, String cont, Element alumnoE) {		
+		//Element alumnoE = document.createElement("alumno");
+		alumnoE.setAttribute(etiqueta, cont);
+
+		//return alumnoE;
 	}
 
 	protected static List<Alumno> leerAlumno() {

@@ -7,24 +7,47 @@ public class MainAlumnosXml extends AlumnosAbstracta {
 
 	public static void main(String[] args) {
 		new MainAlumnosXml().generarXml("AlumnosDOMObjetos.xml");
-		
+
 	}
 
 	@Override
-	protected Element crearElementoAlumno(Document document, Alumno alumno) {
-		// Creamos el nodo alumno
-		Element alumnoE = document.createElement("alumno");
+	protected void anyadirNia(Document document, Alumno alumno, Element alumnoE) {
+		crearElementoAlumno("NIA", Integer.toString(alumno.getNia()), alumnoE, document);
+	}
 
-		crearElemento("nia", Integer.toString(alumno.getNia()), alumnoE, document);
-		crearElemento("nombre", alumno.getNombre(), alumnoE, document);
-		crearElemento("ciclo", alumno.getCiclo(), alumnoE, document);
-		crearElemento("apellidos", alumno.getApellidos(), alumnoE, document);
-		crearElemento("curso", alumno.getCurso(), alumnoE, document);
-		crearElemento("grupo", alumno.getGrupo(), alumnoE, document);
-		crearElemento("genero", Character.toString(alumno.getGenero()), alumnoE, document);
-		crearElemento("fecha", alumno.getFechaString(), alumnoE, document);
-		
-		return alumnoE;
+	@Override
+	protected void anyadirNombre(Document document, Alumno alumno, Element alumnoE) {
+		crearElementoAlumno("nombre", alumno.getNombre(), alumnoE, document);
+	}
+
+	@Override
+	protected void anyadirApellidos(Document document, Alumno alumno, Element alumnoE) {
+		crearElementoAlumno("apellidos", alumno.getApellidos(), alumnoE, document);
+	}
+
+	@Override
+	protected void anyadirCiclo(Document document, Alumno alumno, Element alumnoE) {
+		crearElementoAlumno("ciclo", alumno.getCiclo(), alumnoE, document);
+	}
+
+	@Override
+	protected void anyadirCurso(Document document, Alumno alumno, Element alumnoE) {
+		crearElementoAlumno("curso", alumno.getCurso(), alumnoE, document);
+	}
+
+	@Override
+	protected void anyadirGrupo(Document document, Alumno alumno, Element alumnoE) {
+		crearElementoAlumno("grupo", alumno.getGrupo(), alumnoE, document);
+	}
+
+	@Override
+	protected void anyadirGenero(Document document, Alumno alumno, Element alumnoE) {
+		crearElementoAlumno("genero", Character.toString(alumno.getGenero()), alumnoE, document);
+	}
+
+	@Override
+	protected void anyadirFecha(Document document, Alumno alumno, Element alumnoE) {
+		crearElementoAlumno("fecha", alumno.getFechaString(), alumnoE, document);
 	}
 
 }
