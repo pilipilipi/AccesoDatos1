@@ -7,7 +7,6 @@ public class MainAlumnosXml extends AlumnosAbstracta {
 
 	public static void main(String[] args) {
 		new MainAlumnosXml().generarXml("AlumnosDOMObjetos.xml");
-
 	}
 
 	@Override

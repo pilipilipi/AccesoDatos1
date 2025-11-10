@@ -11,7 +11,6 @@ public class MainAlumnosXmlB extends AlumnosAbstracta {
 	@Override
 	protected void anyadirNia(Document document, Alumno alumno, Element alumnoE) {
 		crearElementoAlumnoatt("NIA", Integer.toString(alumno.getNia()), alumnoE);
-
 	}
 
 	@Override
