@@ -5,13 +5,16 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import ficherosXML.ejercicio07.Alumno;
 
-public class Menu {
+public class Menu implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
