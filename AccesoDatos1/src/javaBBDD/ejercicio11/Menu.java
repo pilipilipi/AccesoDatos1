@@ -1,20 +1,22 @@
 package javaBBDD.ejercicio11;
 
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import ficherosXML.ejercicio07.Alumno;
+import java.sql.*;
 
-public class Menu implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Menu {
+	
+	static int acc = 0;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -33,8 +35,7 @@ public class Menu implements Serializable {
 	}
 
 	public static int elegir(Scanner sc) {
-		System.out.println("\r\nElige opción: \r\n" 
-				+ "1. Insertar un nuevo alumno.\r\n"
+		System.out.println("\r\nElige opción: \r\n" + "1. Insertar un nuevo alumno.\r\n"
 				+ "2. Mostar todos los alumnos (en consola).\r\n"
 				+ "3. Guardar todos los alumnos en un fichero (tú eliges el formato del fichero, pero no puede ser XML ni JSON).\r\n"
 				+ "4. Leer alumnos de un fichero (con el formato anterior), y guardarlo en una BD.\r\n"
@@ -64,7 +65,7 @@ public class Menu implements Serializable {
 			break;
 
 		case 4:
-
+			conectarBBDD(f);
 			break;
 
 		case 5:
@@ -121,43 +122,86 @@ public class Menu implements Serializable {
 		System.out.println("Género (f/m)");
 		char genero = sc.nextLine().charAt(0);
 
-		System.out.println("Fecha de nacimiento dd/MM/yyyy");
+		System.out.println("Fecha de nacimiento yyyy-MM-dd");
 		String fecha = sc.nextLine();
 
 		alumnos.add(new Alumno(nia, nombre, apellidos, ciclo, curso, grupo, genero, fecha));
-		//return alumnos;
+		acc++;
 	}
-	
+
 	public static void mostrarAlumnos(List<Alumno> alumnos) {
-		
-		for(Alumno a : alumnos) {
+
+		for (Alumno a : alumnos) {
 			System.out.println(a);
 		}
 	}
-	
+
 	public static void guardarAlumnos(List<Alumno> alumnos, File f) {
-		
+
 		try (ObjectOutputStream salidaDatos = new ObjectOutputStream(new FileOutputStream(f))) {
-			
-			for(Alumno a : alumnos) {
+
+			for (Alumno a : alumnos) {
 				salidaDatos.writeObject(a);
 			}
-			
-		} catch (FileNotFoundException e) {
+
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+	}
+
+	public static void conectarBBDD(File f) {
+
+		try {
+			// 1. Registrar el driver
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			// 2. Conectarse a la BD
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejercicio11", "root", "manager");
+
+			// 3. PreparedStatement para insertar ALUMNOS
+			String sql = "INSERT INTO alumno (nia, nombre, apellidos, ciclo, curso, grupo, genero, fecha)"
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+			PreparedStatement ps = conexion.prepareStatement(sql);
+
+			// 4. Leer objetos desde el fichero
+			try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(f))) {
+
+				for (int i = 0; i < acc; i++) {
+					try {
+						Alumno a = (Alumno) entrada.readObject();
+
+						// 5. Rellenar parámetros
+						ps.setInt(1, a.getNia());
+						ps.setString(2, a.getNombre());
+						ps.setString(3, a.getApellidos());
+						ps.setString(4, a.getCiclo());
+						ps.setString(5, a.getCurso());
+						ps.setString(6, a.getGrupo());
+						ps.setString(7, String.valueOf(a.getGenero()));
+						ps.setDate(8, Date.valueOf(a.getFecha()));
+
+						// 6. Insertar
+						ps.executeUpdate();
+
+					} catch (EOFException eof) {
+						break; 
+					}
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			// 7. Cerrar la conexión
+			ps.close();
+			conexion.close();
+
+			System.out.println("Alumnos insertados correctamente en la BD");
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 }
-
-
-
-
-
-
-
-
-

@@ -1,15 +1,19 @@
 package javaBBDD.ejercicio11;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Alumno {
+public class Alumno implements Serializable { 
+    // 1. Implementa la interfaz Serializable
+    
+    private static final long serialVersionUID = 1L;
 	private int nia;
 	private String nombre, apellidos, ciclo, curso, grupo;
 	private char genero;
 
-	private static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private LocalDate fecha;
 
 	public Alumno(int nia, String nombre, String apellidos, String ciclo, String curso, String grupo, char genero,
