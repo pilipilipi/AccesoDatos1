@@ -6,7 +6,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/pilar/OneDrive/Escritorio/DAM2/Acceso a datos/gson-2.13.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/pilar/OneDrive/Escritorio/DAM2/Acceso a datos/mysql-connector-j-9.5.0/mysql-connector-j-9.5.0/mysql-connector-j-9.5.0.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/alumno/Downloads/mysql-connector-j-9.5.0/mysql-connector-j-9.5.0/mysql-connector-j-9.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/alumno/Downloads/gson-2.13.2.jar"/>
+>>>>>>> branch 'master' of https://github.com/pilipilipi/AccesoDatos1.git
 	<classpathentry kind="output" path="bin"/>
 </classpath>
