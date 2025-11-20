@@ -1,10 +1,11 @@
-package javaBBDD.ejercicio11;
+package ficherosJson.ejercicio10b;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Alumno {
+public class Alumno{
+	
 	private int nia;
 	private String nombre, apellidos, ciclo, curso, grupo;
 	private char genero;
