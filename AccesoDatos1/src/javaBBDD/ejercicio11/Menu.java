@@ -18,9 +18,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import ficherosJson.ejercicio10b.Alumno;
-import ficherosJson.ejercicio10b.LocalDateAdapter;
-
 import java.sql.*;
 import java.time.LocalDate;
 
